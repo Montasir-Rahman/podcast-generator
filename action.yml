@@ -18,5 +18,5 @@ inputs:
 
   name:
     description: "The Commiter's name"
-    default: true
+    required: true
     default: ${{ github.actor }}
