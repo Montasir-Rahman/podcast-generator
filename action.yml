@@ -2,21 +2,21 @@ name: "Podcast Generator"
 author: "Montasir Rahman"
 description: "Generates a Feed for a Podcast"
 
-inputs:
-  email:
-    description: "The committer's email address"
-    required: true
-  name:
-    description: "The committer's name"
-    required: true
-
 runs:
   using: "docker"
   image: "Dockerfile"
-  env:
-    INPUT_EMAIL: ${{ inputs.email }}
-    INPUT_NAME: ${{ inputs.name }}
 
 branding:
   icon: "git-branch"
   color: "red"
+
+inputs:
+  email:
+    description: "The commiter's email address"
+    required: true
+    default: ${{ github.actor }}@localhost
+
+  name:
+    description: "The Commiter's name"
+    required: true
+    default: ${{ github.actor }}

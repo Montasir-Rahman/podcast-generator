@@ -1,22 +1,16 @@
 FROM ubuntu:latest
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Install Python, PyYAML, and Git
 RUN apt-get update && apt-get install -y \
     python3.10 \
     python3-pip \
-    python3-yaml \
-    git \
- && rm -rf /var/lib/apt/lists/*
+    git
 
-# Link python and pip
-RUN ln -sf /usr/bin/python3.10 /usr/bin/python && \
-    ln -sf /usr/bin/pip3 /usr/bin/pip
+#RUN pip3 install PyYAML
 
-# Copy script and entrypoint
+RUN apt-get install -y python3-yaml
+
 COPY feed.py /usr/bin/feed.py
+
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
